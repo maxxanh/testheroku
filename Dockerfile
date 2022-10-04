@@ -8,10 +8,10 @@ FROM $REPO/sdk:6-buster AS build
 ENV BuildingDocker true
 WORKDIR /src
 COPY ["Project1.csproj", ""]
-RUN dotnet restore "Project1.csproj"
+RUN dotnet restore "Project1.sln"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "Project1.csproj" -c Release -o /app/build
+RUN dotnet build "Project1/Project1.csproj" -c Release -o /app/build
 
 FROM node:12-alpine as build-node
 WORKDIR ClientApp
@@ -22,7 +22,7 @@ COPY ClientApp/ .
 RUN npm run-script build
 
 FROM build AS publish
-RUN dotnet publish "Project1.csproj" -c Release -o /app/publish
+RUN dotnet publish "Project1/Project1.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
