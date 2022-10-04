@@ -13,12 +13,12 @@ COPY . .
 WORKDIR "/src"
 RUN dotnet build "Project1/Project1.csproj" -c Release -o /app/build
 
-FROM node:12-alpine as build-node
+FROM node:16-alpine as build-node
 WORKDIR ClientApp
 COPY Project1/ClientApp/package.json .
 COPY Project1/ClientApp/package-lock.json .
 RUN npm install
-COPY ClientApp/ .
+COPY Project1/ClientApp/ .
 RUN npm run-script build
 
 FROM build AS publish
