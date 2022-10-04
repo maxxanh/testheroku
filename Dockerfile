@@ -8,7 +8,7 @@ FROM $REPO/sdk:6.0 AS build
 ENV BuildingDocker true
 WORKDIR /src
 COPY ["Project1/Project1.csproj", ""]
-RUN dotnet restore "Project1.sln"
+RUN dotnet restore "Project1.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "Project1/Project1.csproj" -c Release -o /app/build
