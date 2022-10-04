@@ -15,8 +15,8 @@ RUN dotnet build "Project1/Project1.csproj" -c Release -o /app/build
 
 FROM node:12-alpine as build-node
 WORKDIR ClientApp
-COPY ClientApp/package.json .
-COPY ClientApp/package-lock.json .
+COPY Project1/ClientApp/package.json .
+COPY Project1/ClientApp/package-lock.json .
 RUN npm install
 COPY ClientApp/ .
 RUN npm run-script build
