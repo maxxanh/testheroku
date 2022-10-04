@@ -1,10 +1,10 @@
-ARG REPO=mcr.microsoft.com/dotnet/core
-FROM $REPO/aspnet:6-buster-slim AS base
+ARG REPO=mcr.microsoft.com/dotnet
+FROM $REPO/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM $REPO/sdk:6-buster AS build
+FROM $REPO/sdk:6.0 AS build
 ENV BuildingDocker true
 WORKDIR /src
 COPY ["Project1.csproj", ""]
