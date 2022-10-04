@@ -12,20 +12,23 @@ namespace Project1.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private DataContext _context;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, DataContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            var sum = _context.Tests.FirstOrDefault().FirstName;
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                Summary = sum
             })
             .ToArray();
         }

@@ -1,8 +1,13 @@
+using Project1;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+var services = builder.Services;
+services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
