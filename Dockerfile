@@ -27,5 +27,5 @@ RUN dotnet publish "Project1/Project1.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=build-node /ClientApp/dist ./ClientApp/dist
+COPY --from=build-node /ClientApp/dist ./wwwroot
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet Project1.dll
