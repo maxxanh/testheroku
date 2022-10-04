@@ -7,7 +7,7 @@ EXPOSE 443
 FROM $REPO/sdk:6.0 AS build
 ENV BuildingDocker true
 WORKDIR /src
-COPY ["Project1.csproj", ""]
+COPY ["Project1/Project1.csproj", ""]
 RUN dotnet restore "Project1.sln"
 COPY . .
 WORKDIR "/src"
